@@ -14,7 +14,7 @@ COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy application code
-COPY WebLibManager/src ./src
+COPY src ./src
 
 # Create directory for SQLite database
 RUN mkdir -p /data
