@@ -17,7 +17,10 @@ def fs_ls(path: str):
         else:
             files.append(item)
 
-    return dirs, files
+    return {
+        "dirs": dirs,
+        "files": files,
+    }
 
 def fs_scan(base_path: str):
     visited_files = set()
