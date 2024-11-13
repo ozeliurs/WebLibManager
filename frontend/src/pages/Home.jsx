@@ -3,13 +3,12 @@ import FilesystemBrowser from "../components/FilesystemBrowser";
 const Home = () => {
   const handlePathSelect = async (path) => {
     try {
-      const res = await fetch("https://weblibmanager.ozeliurs.com/api/scans/", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
+      const res = await fetch(
+        `https://weblibmanager.ozeliurs.com/api/scans/?path=${path}`,
+        {
+          method: "POST",
         },
-        body: JSON.stringify({ path }),
-      });
+      );
       if (res.ok) {
         window.location.href = "/scans";
       }

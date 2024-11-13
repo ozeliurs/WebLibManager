@@ -14,7 +14,14 @@ const FilesystemBrowser = ({ onSelectPath }) => {
     setCurrentPath((prev) => {
       const parts = prev.split("/").filter(Boolean);
       parts.pop();
-      return "/" + parts.join("/");
+      return parts.length === 0 ? "/" : "/" + parts.join("/");
+    });
+  };
+
+  const navigateToDir = (dir) => {
+    setCurrentPath((prev) => {
+      const base = prev === "/" ? "" : prev;
+      return `${base}/${dir}`;
     });
   };
 
@@ -35,7 +42,7 @@ const FilesystemBrowser = ({ onSelectPath }) => {
             <button
               key={dir}
               className="btn btn-sm"
-              onClick={() => setCurrentPath(`${currentPath}/${dir}`)}
+              onClick={() => navigateToDir(dir)}
             >
               📁 {dir}
             </button>
