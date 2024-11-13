@@ -2,7 +2,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from .database import create_db_and_tables
-from .routers import scan, fs, files
+from .routers import scan, fs, files, convert
 
 app = FastAPI()
 
@@ -17,6 +17,7 @@ app.add_middleware(
 app.include_router(scan.router, prefix="/api")
 app.include_router(fs.router, prefix="/api")
 app.include_router(files.router, prefix="/api")
+app.include_router(convert.router, prefix="/api")
 
 @app.on_event("startup")
 def on_startup():
