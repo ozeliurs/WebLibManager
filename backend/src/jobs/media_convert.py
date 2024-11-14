@@ -89,7 +89,7 @@ class MediaConverter:
                     logger.debug(output.strip())
 
             if process.returncode != 0:
-                raise ConversionError("FFmpeg conversion failed")
+                raise ConversionError(f"FFmpeg conversion failed: {process.stderr}")
 
             # Update job status to completed
             self._update_job_status("completed")
