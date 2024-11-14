@@ -81,15 +81,10 @@ class MediaConverter:
             )
 
             # Monitor the conversion process
-            while True:
-                output = process.stderr.readline()
-                if output == '' and process.poll() is not None:
-                    break
-                if output:
-                    logger.debug(output.strip())
+            stdout, stderr = process.communicate()
 
             if process.returncode != 0:
-                raise ConversionError("FFmpeg conversion failed")
+                raise ConversionError(f"FFmpeg conversion failed: {stderr}")
 
             # Update job status to completed
             self._update_job_status("completed")
