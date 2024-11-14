@@ -9,7 +9,7 @@ from ..database import engine
 
 # Configure logging
 logging.basicConfig(
-    level=logging.INFO,
+    level=logging.DEBUG,
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
 )
 logger = logging.getLogger(__name__)
@@ -89,7 +89,7 @@ class MediaConverter:
                     logger.debug(output.strip())
 
             if process.returncode != 0:
-                raise ConversionError(f"FFmpeg conversion failed: {process.stderr}")
+                raise ConversionError("FFmpeg conversion failed")
 
             # Update job status to completed
             self._update_job_status("completed")
